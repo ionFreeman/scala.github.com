@@ -9,7 +9,7 @@ title: Contribute
 
 [docs.scala-lang.org](http://docs.scala-lang.org) was intended to make it easier for the Scala team and the community at large to easily collect, organize, and "make public" many different types of documentation while making it easy for users to find, interact, and help us improve that documentation.
 
-This website is an open-source repository of official Scala documentation, hosted on [github](https://github.com/scala/scala.github.com), that is always ready for contributions.
+This website is an open-source repository of official Scala documentation, hosted on [github](https://github.com/scala/docs.scala-lang), that is always ready for contributions.
 
 ### A Need for Better Documentation
 
@@ -33,17 +33,19 @@ Currently, the _types_ of documentation supported in this repository are:
 
 ### Implementation
 
-This documentation repository is open-source, it lives in [github repository](https://github.com/scala/scala.github.com), and is always contribution-ready.
+This documentation repository is open-source, it lives in [github repository](https://github.com/scala/docs.scala-lang), and is always contribution-ready.
 
 It's statically generated from [Markdown](http://en.wikipedia.org/wiki/Markdown) source using [Jekyll](https://github.com/mojombo/jekyll), and hosted on [GitHub Pages](http://pages.github.com/). This workflow was chosen so as to make it as easy as possible for core committers and the community alike to produce HTML documentation, and as easy as possible to publish it in a central location.
 
-The markdown syntax being used supports [Maruku](http://maruku.rubyforge.org/maruku.html) extensions, and has automatic syntax highlighting, without the need for any tags.
+The markdown syntax being used supports [Maruku](https://github.com/bhollis/maruku) extensions, and has automatic syntax highlighting, without the need for any tags.
+
+Additionally [tut](https://github.com/tpolecat/tut) is used during pull requests to validate Scala code blocks. To use this feature you must use the backtick notation as documented by tut. Note that only validation is done. The output files from tut are not used in the building of the tutorial. Either use `tut` or `tut:fail` for your code blocks.
 
 ## Submitting Docs
 
 For one to contribute a document, one must simply
 [fork](https://help.github.com/articles/fork-a-repo/) the
-[repo](https://github.com/scala/scala.github.com), write their article in
+[repo](https://github.com/scala/docs.scala-lang), write their article in
 [Markdown](http://daringfireball.net/projects/markdown/syntax) (example below), and submit a pull request. That's it. Likely after some edits and discussion, your document will be made live on [docs.scala-lang.org](http://docs.scala-lang.org).
 
     ---
@@ -67,7 +69,7 @@ The goal of this documentation repository is to be tighter and more organized th
 - **be polished** it must be thorough, complete, correct, organized, and "article-like" (personal programming notes don't quite fit.)
 - **be maintained** if the document might require revisions from time to time, it should come with an owner
 
-If you have something you're thinking about contributing, or that you're thinking about writing in order to contribute-- we'd love to consider it! Please don't hesitate to contact [Heather](http://people.epfl.ch) with any questions, concerns, clarifications, etc.
+If you have something you're thinking about contributing, or that you're thinking about writing in order to contribute-- we'd love to consider it! Please don't hesitate to use GitHub issues and pull requests and the [scala/contributors room](https://gitter.im/scala/contributors) on Gitter for any questions, concerns, clarifications, etc.
 
 ## Document Templates
 
@@ -88,10 +90,10 @@ The rest of the document should, of course, be written in [Markdown](http://en.w
 
 At the moment, `RELEVANT-CATEGORY` corresponds to only a single category, "core," because we are currently focusing on building up documentation of core libraries. However, expect more categories here in the future.
 
-If your document consists of **multiple** pages, like the [Collections]({{ site.baseurl }}/overviews/collections/index.html) overview, an ordering must be specified, by numbering documents in their logical order with `num`, and a name must be assigned to the collection of pages using `partof`. For example, the following header might be used for a document in the collections overview:
+If your document consists of **multiple** pages, like the [Collections]({{ site.baseurl }}/overviews/collections/introduction.html) overview, an ordering must be specified, by numbering documents in their logical order with `num`, and a name must be assigned to the collection of pages using `partof`. For example, the following header might be used for a document in the collections overview:
 
     ---
-    layout: overview-large
+    layout: overview
     title: YOUR TITLE
 
     partof: collections
@@ -101,7 +103,7 @@ If your document consists of **multiple** pages, like the [Collections]({{ site.
 A **single** document in the collection must contain a tag in the header, `outof`, that indicates the total number of documents in the large overview. Putting it on the last page in the overview is often best:
 
     ---
-    layout: overview-large
+    layout: overview
     title: YOUR TITLE
 
     partof: collections
@@ -109,7 +111,7 @@ A **single** document in the collection must contain a tag in the header, `outof
     outof: 15
     ---
 
-Any overview document may also include comments. To include comments, just add the tag `disqus: true` to your header.
+Any overview document may also include comments. To include comments, just add the tag `discourse: true` to your header.
 
 Index pages, such as [http://docs.scala-lang.org/overviews/index.html](http://docs.scala-lang.org/overviews/index.html) are automatically generated, assuming documents are properly placed under the correct `RELEVANT-CATEGORY`. So, simply drop your document into the correct folder, and you're done.
 
@@ -122,17 +124,17 @@ At the moment, a tutorial that can be logically placed on **one** page must be p
     title: YOUR TITLE
     ---
 
-If you have a **multiple-page** tutorial, like in the case of multiple-page overviews, you must both specify an ordering for your document, and a name must be assigned to the collection of tutorial pages. For example, the following header is used for the [Tour of Scala]({{ site.baseurl }}/tutorials) series of tutorial articles:
+If you have a **multiple-page** tutorial, like in the case of multiple-page overviews, you must both specify an ordering for your document, and a name must be assigned to the collection of tutorial pages. For example, the following header is used for the [Tour of Scala]({{ site.baseurl }}/tour/tour-of-scala.html) series of tutorial articles:
 
     ---
-    layout: tutorial
+    layout: inner-page-no-masthead
     title: YOUR TITLE
 
     tutorial: scala-tour
     num: 4
     ---
 
-Any tutorial document may also include comments. To include comments, just add the tag `disqus: true` to your header.
+Any tutorial document may also include comments. To include comments, just add the tag `discourse: true` to your header.
 
 At the moment, only indexes for multiple-page tutorials are automatically generated.
 
